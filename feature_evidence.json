@@ -1,0 +1,155 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-a-chatbot-style-conversational-ui-that-presents-5-financial-questions-one-at-a-time-with-smooth-transitions-between-questions-the-flow-should-feel-like-a-guided-chat-conversation-with-a-bot-sending-each-question-as-a-message-bubble",
+      "featureTitle": "Implement a chatbot-style conversational UI that presents 5 financial questions one at a time, with smooth transitions between questions. The flow should feel like a guided chat conversation with a bot sending each question as a message bubble.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/ChatInterface.tsx",
+        "frontend/src/components/ChatMessage.tsx",
+        "frontend/src/components/ProgressIndicator.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-question-1-what-asset-classes-do-you-prefer-to-invest-more-render-as-a-multiselect-ui-allowing-the-user-to-pick-one-or-more-of-a-fd-rd-savings-b-gold-silver-etfs-c-real-estate-d-mfs-equity-e-debt-at-least-one-selection-must-be-made-before-proceeding",
+      "featureTitle": "Question 1: 'What asset classes do you prefer to invest more?' — Render as a multiselect UI allowing the user to pick one or more of: A. FD/RD/Savings, B. Gold/Silver/ETFs, C. Real Estate, D. MFs/Equity, E. Debt. At least one selection must be made before proceeding.",
+      "files": [
+        "frontend/src/components/QuestionOne.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-question-2-what-is-your-monthly-in-hand-income-post-taxes-render-as-a-fill-in-the-blank-numeric-input-field-with-inr-label-suffix-validate-that-the-input-is-a-positive-number-before-allowing-the-user-to-proceed",
+      "featureTitle": "Question 2: 'What is your monthly in-hand income post taxes?' — Render as a fill-in-the-blank numeric input field with 'INR' label suffix. Validate that the input is a positive number before allowing the user to proceed.",
+      "files": [
+        "frontend/src/components/QuestionTwo.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-question-3-do-you-have-any-outstanding-loans-render-as-a-multiselect-with-conditional-fill-in-the-blank-fields-options-a-home-loan-b-personal-loan-c-car-loan-d-education-loan-e-other-loan-f-no-loans-when-options-a-e-are-selected-a-numeric-inr-input-field-appears-inline-next-to-that-option-if-f-no-loans-is-selected-all-other-options-and-their-inputs-are-deselected-and-disabled-require-at-least-one-selection-before-proceeding",
+      "featureTitle": "Question 3: 'Do you have any outstanding loans?' — Render as a multiselect with conditional fill-in-the-blank fields. Options: A. Home Loan, B. Personal Loan, C. Car Loan, D. Education Loan, E. Other Loan, F. No Loans. When options A–E are selected, a numeric INR input field appears inline next to that option. If 'F. No Loans' is selected, all other options and their inputs are deselected and disabled. Require at least one selection before proceeding.",
+      "files": [
+        "frontend/src/components/QuestionThree.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-question-4-what-of-your-monthly-salary-goes-to-your-family-contributions-give-an-estimated-value-render-as-a-fill-in-the-blank-percentage-input-validate-that-the-value-is-a-number-between-0-and-100-before-allowing-the-user-to-proceed",
+      "featureTitle": "Question 4: 'What % of your monthly salary goes to your family contributions? Give an estimated value' — Render as a fill-in-the-blank percentage input. Validate that the value is a number between 0 and 100 before allowing the user to proceed.",
+      "files": [
+        "frontend/src/components/QuestionFour.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-question-5-what-are-your-upcoming-expenses-in-the-next-5-years-render-as-a-multiselect-options-a-marriage-b-home-purchase-c-car-purchase-d-child-e-medical-expense-surgery-f-free-text-fill-in-the-blank-for-other-only-option-f-has-a-text-input-options-a-e-are-plain-selectable-choices-the-f-option-s-text-field-is-activated-only-when-f-is-selected-at-least-one-option-must-be-selected-before-proceeding",
+      "featureTitle": "Question 5: 'What are your upcoming expenses in the next 5 years?' — Render as a multiselect. Options: A. Marriage, B. Home Purchase, C. Car Purchase, D. Child, E. Medical Expense (Surgery), F. [free text fill-in-the-blank for 'Other']. Only option F has a text input; options A–E are plain selectable choices. The F option's text field is activated only when F is selected. At least one option must be selected before proceeding.",
+      "files": [
+        "frontend/src/components/QuestionFive.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-after-the-chatbot-flow-completes-display-a-results-dashboard-on-a-single-page-showing-all-5-persona-scores-each-score-is-rendered-as-its-own-individual-pie-donut-chart-display-the-score-label-e-g-risk-appetite-the-numeric-score-e-g-72-100-and-a-brief-descriptive-label-e-g-moderate-high-beneath-each-chart-all-5-charts-should-be-laid-out-together-in-a-single-scrollable-page",
+      "featureTitle": "After the chatbot flow completes, display a results dashboard on a single page showing all 5 persona scores. Each score is rendered as its own individual pie/donut chart. Display the score label (e.g., 'Risk Appetite'), the numeric score (e.g., '72/100'), and a brief descriptive label (e.g., 'Moderate-High') beneath each chart. All 5 charts should be laid out together in a single scrollable page.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Dashboard.tsx",
+        "frontend/src/components/ScoreChart.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-modern-trustworthy-financial-advisory-visual-theme-use-a-dark-navy-slate-background-with-gold-and-teal-accent-colors-clean-sans-serif-typography-and-card-based-layouts-with-subtle-shadows-the-chatbot-interface-should-feel-professional-and-calm-the-dashboard-should-feel-like-a-premium-fintech-report",
+      "featureTitle": "Apply a modern, trustworthy financial-advisory visual theme: use a dark navy/slate background with gold and teal accent colors, clean sans-serif typography, and card-based layouts with subtle shadows. The chatbot interface should feel professional and calm; the dashboard should feel like a premium fintech report.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

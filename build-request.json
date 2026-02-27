@@ -1,0 +1,199 @@
+{
+  "kind": "build_request",
+  "title": "Financial Persona Chatbot with Dashboard",
+  "projectName": "FinSight Persona",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement a chatbot-style conversational UI that presents 5 financial questions one at a time, with smooth transitions between questions. The flow should feel like a guided chat conversation with a bot sending each question as a message bubble.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "A web-app where a chatbot asks the user 5 questions"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Questions appear sequentially, one at a time, as chatbot message bubbles",
+        "User responses are shown as reply bubbles on the opposite side",
+        "A 'Next' or 'Submit' action advances to the next question after the user provides input",
+        "Progress indicator (e.g., 1 of 5) is visible throughout"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Question 1: 'What asset classes do you prefer to invest more?' — Render as a multiselect UI allowing the user to pick one or more of: A. FD/RD/Savings, B. Gold/Silver/ETFs, C. Real Estate, D. MFs/Equity, E. Debt. At least one selection must be made before proceeding.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "(Make this multiselect) What asset classes do you prefer to invest more? Options - A. FD/RD/Savings  B. Gold/Silver/ETFs  C. Real Estate   D. MFs/Equity  E. Debt"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All five options are displayed as selectable chips or checkboxes",
+        "Multiple options can be selected simultaneously",
+        "Selected options are visually highlighted",
+        "Cannot proceed without selecting at least one option"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Question 2: 'What is your monthly in-hand income post taxes?' — Render as a fill-in-the-blank numeric input field with 'INR' label suffix. Validate that the input is a positive number before allowing the user to proceed.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "(Make this fill-in-the-blanks) What is your monthly in-hand income post taxes? ______ INR"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A numeric text field with INR label is displayed",
+        "Input is validated as a positive number",
+        "Cannot proceed with empty or invalid (non-numeric, negative) input"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Question 3: 'Do you have any outstanding loans?' — Render as a multiselect with conditional fill-in-the-blank fields. Options: A. Home Loan, B. Personal Loan, C. Car Loan, D. Education Loan, E. Other Loan, F. No Loans. When options A–E are selected, a numeric INR input field appears inline next to that option. If 'F. No Loans' is selected, all other options and their inputs are deselected and disabled. Require at least one selection before proceeding.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "(Make it multiselect and fill in the blanks, the fill-in-the-blank gets activated for only those options which are selected) Do you have any outstanding loans?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All six options are displayed as selectable checkboxes",
+        "Selecting options A–E activates an INR amount input field for each selected option",
+        "Deselecting an option hides and clears its associated input",
+        "Selecting 'No Loans' deselects and disables all other options",
+        "Selecting any loan option automatically deselects 'No Loans'",
+        "Cannot proceed without at least one selection; if a loan option is selected its amount field must also be filled"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Question 4: 'What % of your monthly salary goes to your family contributions? Give an estimated value' — Render as a fill-in-the-blank percentage input. Validate that the value is a number between 0 and 100 before allowing the user to proceed.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "(Make it Fill-in-the-blanks) What % of your monthly salary goes to your family contributions? Give an estimated value _____%"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A numeric text field with % suffix is displayed",
+        "Input is validated as a number between 0 and 100",
+        "Cannot proceed with empty or out-of-range input"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Question 5: 'What are your upcoming expenses in the next 5 years?' — Render as a multiselect. Options: A. Marriage, B. Home Purchase, C. Car Purchase, D. Child, E. Medical Expense (Surgery), F. [free text fill-in-the-blank for 'Other']. Only option F has a text input; options A–E are plain selectable choices. The F option's text field is activated only when F is selected. At least one option must be selected before proceeding.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "(Make this multiselect and only last option is fill-in-the-blanks) What are your upcoming expenses in next 5 years?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Options A–E are plain selectable chips/checkboxes",
+        "Option F shows a free-text input only when selected",
+        "Deselecting F clears and hides its text input",
+        "Cannot proceed without at least one selection; if F is selected its text field must be filled"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Implement a scoring engine (backend) that accepts the user's answers to all 5 questions and computes 5 persona scores, each on a 0–100 integer scale: (1) Risk Appetite, (2) Debt Profile, (3) Earning Potential, (4) Emergency Broke Likelihood, (5) Upcoming Expense Fulfillment Likelihood. The scoring logic must use the submitted answers (asset class preferences, income, loan amounts, family contribution %, upcoming expenses) as inputs to derive meaningful, differentiated scores.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Based on the user's answers to these questions, the system makes a persona for this user consisting Risk Appetite (0-100 scale), Debt profile (0-100 scale), Earning Potential (0-100 scale)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A backend function accepts all 5 answers as structured input",
+        "Returns exactly 5 scores, each an integer between 0 and 100",
+        "Risk Appetite is higher when user selects more volatile asset classes (e.g., MFs/Equity, Real Estate) and lower for conservative choices (FD/RD)",
+        "Debt Profile score reflects total outstanding loan burden relative to income",
+        "Earning Potential is derived from monthly income level",
+        "Emergency Broke Likelihood is derived from income vs. total loan obligations and family contributions",
+        "Upcoming Expense Fulfillment Likelihood considers number/type of upcoming expenses vs. income and debt burden"
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "After the chatbot flow completes, display a results dashboard on a single page showing all 5 persona scores. Each score is rendered as its own individual pie/donut chart. Display the score label (e.g., 'Risk Appetite'), the numeric score (e.g., '72/100'), and a brief descriptive label (e.g., 'Moderate-High') beneath each chart. All 5 charts should be laid out together in a single scrollable page.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "this user persona is shown to the user in a dashboard format with all these 5 parameters in individual pie charts in a single page"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dashboard page is shown automatically after the last question is answered",
+        "5 individual pie/donut charts are rendered, one per persona score",
+        "Each chart clearly labels its parameter name",
+        "Each chart displays the numeric score (0-100) and a qualitative descriptor",
+        "The filled portion of each chart corresponds to the score value (filled arc = score out of 100)",
+        "All 5 charts are visible on a single page (responsive grid layout)"
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Apply a modern, trustworthy financial-advisory visual theme: use a dark navy/slate background with gold and teal accent colors, clean sans-serif typography, and card-based layouts with subtle shadows. The chatbot interface should feel professional and calm; the dashboard should feel like a premium fintech report.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Consistent dark navy/slate base with gold and teal accents throughout",
+        "Chat message bubbles are visually distinct for bot vs. user",
+        "Dashboard cards have subtle drop shadows and rounded corners",
+        "Typography is legible and maintains clear hierarchy"
+      ]
+    }
+  ],
+  "constraints": [
+    "All scoring logic must reside in the single Motoko backend actor (backend/main.mo)",
+    "Do not edit any files under frontend/src/hooks/ or frontend/src/components/ui",
+    "No external APIs or LLM integrations for scoring — logic must be deterministic and self-contained"
+  ],
+  "nonGoals": [
+    "User authentication or login",
+    "Saving or persisting persona results across sessions",
+    "Comparison of multiple users' personas",
+    "Financial advice or recommendations beyond the persona scores",
+    "Editable answers after submission"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Abstract financial data visualization background with subtle grid lines, upward trending curves, and scattered geometric shapes in dark navy and gold tones (chatbot-bg.dim_1920x1080.png)"
+    ],
+    "edits": []
+  }
+}

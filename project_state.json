@@ -1,0 +1,111 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "A web-app chatbot that walks users through 5 financial questions (asset preference multiselect, monthly income, outstanding loans with conditional fill-in-the-blanks, family contribution %, upcoming expenses multiselect) and then generates a user persona with 5 financial health scores (Risk Appetite, Debt Profile, Earning Potential, Emergency Broke Likelihood, Upcoming Expense Fulfillment) displayed as individual pie charts on a dashboard.",
+  "architectural_notes": [
+    "Q3 loan options use conditional fill-in-the-blank inputs that activate only when the corresponding option is selected",
+    "Q5 last option (F) is a free-text fill-in-the-blank; all other options are fixed multiselect",
+    "Persona scoring must derive Risk Appetite, Debt Profile, Earning Potential, Emergency Broke Likelihood, and Upcoming Expense Fulfillment from the 5 question answers using a defined formula/heuristic"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Abstract financial data visualization background with subtle grid lines, upward trending curves, and scattered geometric shapes in dark navy and gold tones (chatbot-bg.dim_1920x1080.png)",
+  "existing_features": [
+    {
+      "id": "feature-implement-a-chatbot-style-conversational-ui-that-presents-5-financial-questions-one-at-a-time-with-smooth-transitions-between-questions-the-flow-should-feel-like-a-guided-chat-conversation-with-a-bot-sending-each-question-as-a-message-bubble",
+      "title": "Implement a chatbot-style conversational UI that presents 5 financial questions one at a time, with smooth transitions between questions. The flow should feel like a guided chat conversation with a bot sending each question as a message bubble.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-question-1-what-asset-classes-do-you-prefer-to-invest-more-render-as-a-multiselect-ui-allowing-the-user-to-pick-one-or-more-of-a-fd-rd-savings-b-gold-silver-etfs-c-real-estate-d-mfs-equity-e-debt-at-least-one-selection-must-be-made-before-proceeding",
+      "title": "Question 1: 'What asset classes do you prefer to invest more?' — Render as a multiselect UI allowing the user to pick one or more of: A. FD/RD/Savings, B. Gold/Silver/ETFs, C. Real Estate, D. MFs/Equity, E. Debt. At least one selection must be made before proceeding.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-question-2-what-is-your-monthly-in-hand-income-post-taxes-render-as-a-fill-in-the-blank-numeric-input-field-with-inr-label-suffix-validate-that-the-input-is-a-positive-number-before-allowing-the-user-to-proceed",
+      "title": "Question 2: 'What is your monthly in-hand income post taxes?' — Render as a fill-in-the-blank numeric input field with 'INR' label suffix. Validate that the input is a positive number before allowing the user to proceed.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-question-3-do-you-have-any-outstanding-loans-render-as-a-multiselect-with-conditional-fill-in-the-blank-fields-options-a-home-loan-b-personal-loan-c-car-loan-d-education-loan-e-other-loan-f-no-loans-when-options-a-e-are-selected-a-numeric-inr-input-field-appears-inline-next-to-that-option-if-f-no-loans-is-selected-all-other-options-and-their-inputs-are-deselected-and-disabled-require-at-least-one-selection-before-proceeding",
+      "title": "Question 3: 'Do you have any outstanding loans?' — Render as a multiselect with conditional fill-in-the-blank fields. Options: A. Home Loan, B. Personal Loan, C. Car Loan, D. Education Loan, E. Other Loan, F. No Loans. When options A–E are selected, a numeric INR input field appears inline next to that option. If 'F. No Loans' is selected, all other options and their inputs are deselected and disabled. Require at least one selection before proceeding.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-question-4-what-of-your-monthly-salary-goes-to-your-family-contributions-give-an-estimated-value-render-as-a-fill-in-the-blank-percentage-input-validate-that-the-value-is-a-number-between-0-and-100-before-allowing-the-user-to-proceed",
+      "title": "Question 4: 'What % of your monthly salary goes to your family contributions? Give an estimated value' — Render as a fill-in-the-blank percentage input. Validate that the value is a number between 0 and 100 before allowing the user to proceed.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-question-5-what-are-your-upcoming-expenses-in-the-next-5-years-render-as-a-multiselect-options-a-marriage-b-home-purchase-c-car-purchase-d-child-e-medical-expense-surgery-f-free-text-fill-in-the-blank-for-other-only-option-f-has-a-text-input-options-a-e-are-plain-selectable-choices-the-f-option-s-text-field-is-activated-only-when-f-is-selected-at-least-one-option-must-be-selected-before-proceeding",
+      "title": "Question 5: 'What are your upcoming expenses in the next 5 years?' — Render as a multiselect. Options: A. Marriage, B. Home Purchase, C. Car Purchase, D. Child, E. Medical Expense (Surgery), F. [free text fill-in-the-blank for 'Other']. Only option F has a text input; options A–E are plain selectable choices. The F option's text field is activated only when F is selected. At least one option must be selected before proceeding.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-after-the-chatbot-flow-completes-display-a-results-dashboard-on-a-single-page-showing-all-5-persona-scores-each-score-is-rendered-as-its-own-individual-pie-donut-chart-display-the-score-label-e-g-risk-appetite-the-numeric-score-e-g-72-100-and-a-brief-descriptive-label-e-g-moderate-high-beneath-each-chart-all-5-charts-should-be-laid-out-together-in-a-single-scrollable-page",
+      "title": "After the chatbot flow completes, display a results dashboard on a single page showing all 5 persona scores. Each score is rendered as its own individual pie/donut chart. Display the score label (e.g., 'Risk Appetite'), the numeric score (e.g., '72/100'), and a brief descriptive label (e.g., 'Moderate-High') beneath each chart. All 5 charts should be laid out together in a single scrollable page.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-modern-trustworthy-financial-advisory-visual-theme-use-a-dark-navy-slate-background-with-gold-and-teal-accent-colors-clean-sans-serif-typography-and-card-based-layouts-with-subtle-shadows-the-chatbot-interface-should-feel-professional-and-calm-the-dashboard-should-feel-like-a-premium-fintech-report",
+      "title": "Apply a modern, trustworthy financial-advisory visual theme: use a dark navy/slate background with gold and teal accent colors, clean sans-serif typography, and card-based layouts with subtle shadows. The chatbot interface should feel professional and calm; the dashboard should feel like a premium fintech report.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Chatbot UI with 5 financial questions (multiselect, fill-in-the-blank, conditional inputs)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Scoring engine to compute 5 persona parameters (0-100 scale each) from user answers",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Dashboard page showing 5 persona scores as individual pie charts on a single page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Implement a scoring engine (backend) that accepts the user's answers to all 5 questions and computes 5 persona scores, each on a 0–100 integer scale: (1) Risk Appetite, (2) Debt Profile, (3) Earning Potential, (4) Emergency Broke Likelihood, (5) Upcoming Expense Fulfillment Likelihood. The scoring logic must use the submitted answers (asset class preferences, income, loan amounts, family contribution %, upcoming expenses) as inputs to derive meaningful, differentiated scores.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Financial Persona Chatbot",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

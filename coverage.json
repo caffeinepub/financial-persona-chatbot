@@ -1,0 +1,233 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-27T07:46:08.607Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 9,
+    "implemented": 8,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Implement a chatbot-style conversational UI that presents 5 financial questions one at a time, with smooth transitions between questions. The flow should feel like a guided chat conversation with a bot sending each question as a message bubble.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/ChatInterface.tsx",
+          "frontend/src/components/ChatMessage.tsx",
+          "frontend/src/components/ProgressIndicator.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/ChatInterface.tsx",
+          "frontend/src/components/ChatMessage.tsx",
+          "frontend/src/components/ProgressIndicator.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Question 1: 'What asset classes do you prefer to invest more?' — Render as a multiselect UI allowing the user to pick one or more of: A. FD/RD/Savings, B. Gold/Silver/ETFs, C. Real Estate, D. MFs/Equity, E. Debt. At least one selection must be made before proceeding.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/QuestionOne.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/QuestionOne.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Question 2: 'What is your monthly in-hand income post taxes?' — Render as a fill-in-the-blank numeric input field with 'INR' label suffix. Validate that the input is a positive number before allowing the user to proceed.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/QuestionTwo.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/QuestionTwo.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Question 3: 'Do you have any outstanding loans?' — Render as a multiselect with conditional fill-in-the-blank fields. Options: A. Home Loan, B. Personal Loan, C. Car Loan, D. Education Loan, E. Other Loan, F. No Loans. When options A–E are selected, a numeric INR input field appears inline next to that option. If 'F. No Loans' is selected, all other options and their inputs are deselected and disabled. Require at least one selection before proceeding.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/QuestionThree.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/QuestionThree.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Question 4: 'What % of your monthly salary goes to your family contributions? Give an estimated value' — Render as a fill-in-the-blank percentage input. Validate that the value is a number between 0 and 100 before allowing the user to proceed.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/QuestionFour.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/QuestionFour.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Question 5: 'What are your upcoming expenses in the next 5 years?' — Render as a multiselect. Options: A. Marriage, B. Home Purchase, C. Car Purchase, D. Child, E. Medical Expense (Surgery), F. [free text fill-in-the-blank for 'Other']. Only option F has a text input; options A–E are plain selectable choices. The F option's text field is activated only when F is selected. At least one option must be selected before proceeding.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/QuestionFive.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/QuestionFive.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Implement a scoring engine (backend) that accepts the user's answers to all 5 questions and computes 5 persona scores, each on a 0–100 integer scale: (1) Risk Appetite, (2) Debt Profile, (3) Earning Potential, (4) Emergency Broke Likelihood, (5) Upcoming Expense Fulfillment Likelihood. The scoring logic must use the submitted answers (asset class preferences, income, loan amounts, family contribution %, upcoming expenses) as inputs to derive meaningful, differentiated scores.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-8",
+        "summary": "After the chatbot flow completes, display a results dashboard on a single page showing all 5 persona scores. Each score is rendered as its own individual pie/donut chart. Display the score label (e.g., 'Risk Appetite'), the numeric score (e.g., '72/100'), and a brief descriptive label (e.g., 'Moderate-High') beneath each chart. All 5 charts should be laid out together in a single scrollable page.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Dashboard.tsx",
+          "frontend/src/components/ScoreChart.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Dashboard.tsx",
+          "frontend/src/components/ScoreChart.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Apply a modern, trustworthy financial-advisory visual theme: use a dark navy/slate background with gold and teal accent colors, clean sans-serif typography, and card-based layouts with subtle shadows. The chatbot interface should feel professional and calm; the dashboard should feel like a premium fintech report.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/chatbot-bg.dim_1920x1080.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/ChatInterface.tsx",
+    "frontend/src/components/ChatMessage.tsx",
+    "frontend/src/components/Dashboard.tsx",
+    "frontend/src/components/ProgressIndicator.tsx",
+    "frontend/src/components/QuestionFive.tsx",
+    "frontend/src/components/QuestionFour.tsx",
+    "frontend/src/components/QuestionOne.tsx",
+    "frontend/src/components/QuestionThree.tsx",
+    "frontend/src/components/QuestionTwo.tsx",
+    "frontend/src/components/ScoreChart.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/scoring.ts",
+    "frontend/src/main.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

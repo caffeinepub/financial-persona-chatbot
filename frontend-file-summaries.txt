@@ -1,0 +1,17 @@
+{
+  "frontend/src/index.css": "Global styles with OKLCH dark navy/slate financial theme, gold and teal accents, Inter + Sora fonts, custom scrollbar, glow effects, and chat message animations.",
+  "frontend/tailwind.config.js": "Extended Tailwind config with Inter/Sora font families, navy/gold/teal custom color tokens, card shadow utilities, and fade/scale-in animations.",
+  "frontend/src/hooks/useQueries.ts": "React Query mutation hook for calling the backend's calculatePersonaScores method with structured QuestionResponses input.",
+  "frontend/src/lib/scoring.ts": "Utility functions to map raw user inputs (income INR, loan amounts, percentages, selections) to backend enum types, plus score descriptor helpers.",
+  "frontend/src/components/ProgressIndicator.tsx": "Visual progress indicator showing current question step (X of 5) with animated gold dots.",
+  "frontend/src/components/ChatMessage.tsx": "Reusable chat bubble component supporting bot (left-aligned, navy) and user (right-aligned, gold) messages with typing animation support.",
+  "frontend/src/components/QuestionOne.tsx": "Multiselect asset class question with emoji-labeled chip buttons, gold highlight on selection, and validation requiring at least one choice.",
+  "frontend/src/components/QuestionTwo.tsx": "Fill-in-the-blank monthly income input with INR prefix/suffix, positive number validation, and formatted display preview.",
+  "frontend/src/components/QuestionThree.tsx": "Multiselect outstanding loans question with conditional INR amount inputs per selected loan, mutual exclusion with \"No Loans\" option, and full validation.",
+  "frontend/src/components/QuestionFour.tsx": "Percentage input for family contribution with 0–100 validation, animated progress bar preview, and contribution label.",
+  "frontend/src/components/QuestionFive.tsx": "Multiselect upcoming expenses question where only the \"Other\" option activates a free-text input field, with at-least-one-selection validation.",
+  "frontend/src/components/ScoreChart.tsx": "Reusable donut/pie chart component using Recharts showing a score (0–100) with filled arc, center icon+number, and a colored descriptor badge.",
+  "frontend/src/components/Dashboard.tsx": "Results dashboard page displaying all 5 persona score charts in a responsive grid with a summary table, header, and footer.",
+  "frontend/src/components/ChatInterface.tsx": "Main chat orchestrator managing sequential question flow, message history, typing indicators, and answer collection before calling onComplete.",
+  "frontend/src/App.tsx": "Root app component managing chat-to-dashboard view transition, mapping collected answers to backend enum types, and calling the calculatePersonaScores mutation."
+}

@@ -1,0 +1,175 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Financial Persona Chatbot with Dashboard - Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Implement chatbot-style conversational UI presenting 5 financial questions sequentially with smooth transitions",
+      "acceptanceCriteria": [
+        "Questions appear sequentially, one at a time, as chatbot message bubbles",
+        "User responses are shown as reply bubbles on the opposite side",
+        "A 'Next' or 'Submit' action advances to the next question after the user provides input",
+        "Progress indicator (e.g., 1 of 5) is visible throughout"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the current App component with a chat container that manages chatbot flow state (current question index, all answers collected so far, conversation history). Add routing logic to switch between chat view and dashboard view. Wire the generated background image at frontend/public/assets/generated/chatbot-bg.dim_1920x1080.png as a background layer for the chat interface."
+        },
+        {
+          "path": "frontend/src/components/ChatInterface.tsx",
+          "operation": "create",
+          "description": "Create the main chat interface component that renders a scrollable message list, displays bot and user message bubbles with distinct styling, and shows a progress indicator (e.g., 'Question 1 of 5'). The component receives the current question index and conversation history as props and emits events when the user advances to the next question."
+        },
+        {
+          "path": "frontend/src/components/ChatMessage.tsx",
+          "operation": "create",
+          "description": "Create a reusable chat message bubble component that accepts message text, sender type (bot or user), and optional child content (for rendering question inputs inline). Style bot messages with one alignment and user responses with the opposite alignment using the dark navy/slate and gold/teal theme."
+        },
+        {
+          "path": "frontend/src/components/ProgressIndicator.tsx",
+          "operation": "create",
+          "description": "Create a progress indicator component displaying 'Question X of 5' with visual dots or a progress bar. Style it to fit the modern fintech theme with gold accents."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Question 1: Render multiselect UI for asset class preferences with at least one selection required",
+      "acceptanceCriteria": [
+        "All five options are displayed as selectable chips or checkboxes",
+        "Multiple options can be selected simultaneously",
+        "Selected options are visually highlighted",
+        "Cannot proceed without selecting at least one option"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/QuestionOne.tsx",
+          "operation": "create",
+          "description": "Create Question 1 component rendering 'What asset classes do you prefer to invest more?' with five multiselect options: A. FD/RD/Savings, B. Gold/Silver/ETFs, C. Real Estate, D. MFs/Equity, E. Debt. Use checkbox or chip UI with visual highlighting for selected items. Validate that at least one option is selected before enabling the Next button. Emit the selected values as an array when the user proceeds."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Question 2: Render numeric input for monthly in-hand income with INR suffix and positive number validation",
+      "acceptanceCriteria": [
+        "A numeric text field with INR label is displayed",
+        "Input is validated as a positive number",
+        "Cannot proceed with empty or invalid (non-numeric, negative) input"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/QuestionTwo.tsx",
+          "operation": "create",
+          "description": "Create Question 2 component rendering 'What is your monthly in-hand income post taxes?' with a numeric text input field and 'INR' label suffix. Validate the input as a positive number and disable the Next button if the input is empty, non-numeric, or negative. Emit the validated income value when the user proceeds."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Question 3: Render multiselect with conditional fill-in-the-blank INR fields for outstanding loans",
+      "acceptanceCriteria": [
+        "All six options are displayed as selectable checkboxes",
+        "Selecting options A–E activates an INR amount input field for each selected option",
+        "Deselecting an option hides and clears its associated input",
+        "Selecting 'No Loans' deselects and disables all other options",
+        "Selecting any loan option automatically deselects 'No Loans'",
+        "Cannot proceed without at least one selection; if a loan option is selected its amount field must also be filled"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/QuestionThree.tsx",
+          "operation": "create",
+          "description": "Create Question 3 component rendering 'Do you have any outstanding loans?' with six options: A. Home Loan, B. Personal Loan, C. Car Loan, D. Education Loan, E. Other Loan, F. No Loans. Implement multiselect checkboxes where selecting A–E activates an inline INR numeric input field for each. Deselecting an option clears and hides its input. Selecting 'No Loans' deselects and disables all other options; selecting any loan option deselects 'No Loans'. Validate that at least one option is selected and that any selected loan option has a filled amount field before enabling Next. Emit the loan selections and amounts when the user proceeds."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Question 4: Render percentage input for family contribution with 0-100 validation",
+      "acceptanceCriteria": [
+        "A numeric text field with % suffix is displayed",
+        "Input is validated as a number between 0 and 100",
+        "Cannot proceed with empty or out-of-range input"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/QuestionFour.tsx",
+          "operation": "create",
+          "description": "Create Question 4 component rendering 'What % of your monthly salary goes to your family contributions? Give an estimated value' with a numeric text input and '%' suffix. Validate the input as a number between 0 and 100 (inclusive) and disable Next if the input is empty or out of range. Emit the validated percentage value when the user proceeds."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Question 5: Render multiselect for upcoming expenses with free-text input for 'Other' option",
+      "acceptanceCriteria": [
+        "Options A–E are plain selectable chips/checkboxes",
+        "Option F shows a free-text input only when selected",
+        "Deselecting F clears and hides its text input",
+        "Cannot proceed without at least one selection; if F is selected its text field must be filled"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/QuestionFive.tsx",
+          "operation": "create",
+          "description": "Create Question 5 component rendering 'What are your upcoming expenses in the next 5 years?' with six options: A. Marriage, B. Home Purchase, C. Car Purchase, D. Child, E. Medical Expense (Surgery), F. Other (with free-text input). Options A–E are plain selectable chips/checkboxes. Option F activates a text input field only when selected; deselecting F clears and hides the input. Validate that at least one option is selected and that if F is selected its text field is filled. Emit the selected expenses when the user proceeds."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Display a results dashboard showing all 5 persona scores as individual pie/donut charts on a single scrollable page",
+      "acceptanceCriteria": [
+        "Dashboard page is shown automatically after the last question is answered",
+        "5 individual pie/donut charts are rendered, one per persona score",
+        "Each chart clearly labels its parameter name",
+        "Each chart displays the numeric score (0-100) and a qualitative descriptor",
+        "The filled portion of each chart corresponds to the score value (filled arc = score out of 100)",
+        "All 5 charts are visible on a single page (responsive grid layout)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Dashboard.tsx",
+          "operation": "create",
+          "description": "Create the dashboard page component that receives the 5 persona scores (Risk Appetite, Debt Profile, Earning Potential, Emergency Broke Likelihood, Upcoming Expense Fulfillment Likelihood) as props and displays them in a responsive grid layout. Each score is rendered using the ScoreChart component. Apply card-based layouts with subtle shadows and dark navy/slate background. Include a qualitative descriptor mapping for each score range (e.g., 0-30 = Low, 31-60 = Moderate, 61-100 = High)."
+        },
+        {
+          "path": "frontend/src/components/ScoreChart.tsx",
+          "operation": "create",
+          "description": "Create a reusable score chart component that accepts a score name, numeric value (0-100), and optional descriptor. Render a pie/donut chart where the filled arc corresponds to the score value out of 100. Display the score label, numeric value, and descriptor beneath the chart. Use gold and teal accents for chart colors consistent with the fintech theme."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add navigation logic to show the Dashboard component after the chatbot flow completes (after Question 5 is answered and submitted). Call the backend calculatePersonaScores method with the collected answers, wait for the response, then render the Dashboard with the returned scores."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Apply modern, trustworthy financial-advisory visual theme with dark navy/slate, gold, and teal accents",
+      "acceptanceCriteria": [
+        "Consistent dark navy/slate base with gold and teal accents throughout",
+        "Chat message bubbles are visually distinct for bot vs. user",
+        "Dashboard cards have subtle drop shadows and rounded corners",
+        "Typography is legible and maintains clear hierarchy"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define CSS custom properties for the financial theme: dark navy/slate base colors (e.g., #0f172a, #1e293b), gold accent (#d4af37 or similar), teal accent (#14b8a6 or similar). Set global body background, text color, and font family to a clean sans-serif. Ensure legible contrast and clear hierarchy for headings, body text, and labels."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend the Tailwind theme to include custom colors for navy, slate, gold, and teal. Add utility classes for card shadows, rounded corners, and consistent spacing. Ensure the configuration supports the modern fintech aesthetic with professional, calm tones."
+        }
+      ]
+    }
+  ]
+}

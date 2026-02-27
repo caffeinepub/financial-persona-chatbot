@@ -1,0 +1,75 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-27T07:46:08.603Z",
+  "summary": "The diff implements most of the requested requirements including the chatbot UI, all 5 questions, backend scoring engine, results dashboard, and visual theme. However, there are several notable gaps: the backend uses coarse categorical enums instead of actual numeric values (income INR, exact loan amounts, exact family contribution %), the Emergency Broke Likelihood does not factor in family contributions, the background image asset is not included, and qualitative descriptors do not match the compound style exemplified in REQ-8.",
+  "missing_requirements": [
+    {
+      "requirement": "Emergency Broke Likelihood must factor in family contribution percentage as an input",
+      "reason": "REQ-7 explicitly states Emergency Broke Likelihood is derived from income vs. total loan obligations and family contributions. The backend calculateEmergencyBrokeLikelihood function takes (income, expenses, loanAmount) but does NOT include familyContribution as a parameter.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "requirement": "Scoring logic must accept and use actual numeric values (income INR, exact loan amounts, exact family contribution %) rather than pre-bucketed enums for meaningful differentiated scores",
+      "reason": "REQ-7 states the scoring logic must use submitted answers including income, loan amounts, and family contribution % as inputs. The backend only accepts coarse categorical enums; the frontend buckets precise values before calling the backend, losing differentiation in the scoring engine itself.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/lib/scoring.ts"
+      ]
+    },
+    {
+      "requirement": "Qualitative descriptor labels should follow the compound style exemplified in REQ-8 such as Moderate-High",
+      "reason": "REQ-8 AC cites the example descriptor 'Moderate-High'. The implementation uses only single-word labels like Low, Moderate, High, Very High, Excellent, Good, Fair, Poor rather than compound descriptors.",
+      "evidence": [
+        "frontend/src/components/Dashboard.tsx",
+        "frontend/src/lib/scoring.ts"
+      ]
+    },
+    {
+      "requirement": "Background image asset chatbot-bg.dim_1920x1080.png must be present",
+      "reason": "The BuildRequest specifies the image chatbot-bg.dim_1920x1080.png as required and App.tsx references it at /assets/generated/chatbot-bg.dim_1920x1080.png, but no image file appears in the diff.",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Gold/Silver/ETFs asset class is mapped to a crypto enum variant in the backend, introducing a cryptocurrency concept not present in the spec",
+      "reason": "The spec lists asset classes as FD/RD/Savings, Gold/Silver/ETFs, Real Estate, MFs/Equity, and Debt. The backend defines an AssetClass variant #crypto and scoring.ts maps gold_silver_etfs to AssetClass.crypto, but cryptocurrency is never mentioned in the build request.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/lib/scoring.ts"
+      ]
+    }
+  ],
+  "confidence": 0.75,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/ChatInterface.tsx",
+    "frontend/src/components/ChatMessage.tsx",
+    "frontend/src/components/Dashboard.tsx",
+    "frontend/src/components/ProgressIndicator.tsx",
+    "frontend/src/components/QuestionFive.tsx",
+    "frontend/src/components/QuestionFour.tsx",
+    "frontend/src/components/QuestionOne.tsx",
+    "frontend/src/components/QuestionThree.tsx",
+    "frontend/src/components/QuestionTwo.tsx",
+    "frontend/src/components/ScoreChart.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/scoring.ts",
+    "frontend/src/main.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
